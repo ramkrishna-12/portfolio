@@ -35,7 +35,7 @@ Edit `PORTFOLIO` at the top of `script.js` any time you want to add, remove,
 or reword a project — the project cards **and** the chat console both read
 from that one object, so you only update it in one place.
 
-<!-- ## 2. Wire up the contact form so it actually collects inquiries
+## 2. Wire up the contact form so it actually collects inquiries
 
 GitHub Pages only serves static files — there's no server to write a CSV to
 when someone submits a form. This site uses **Formspree** to bridge that gap
@@ -115,4 +115,4 @@ same.
 - Keyboard-navigable, visible focus states, respects
   `prefers-reduced-motion` (the boot-terminal typing effect and the status
   dot's pulse both turn off).
-- No build tooling, no frameworks — should load fast on its own.  -->
+- No build tooling, no frameworks — should load fast on its own. 
