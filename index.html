@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ravan — Cloud &amp; DevOps Infrastructure Engineer</title>
+<meta name="description" content="Ravan (Ramkrishna Roy Barman) — Cloud & Infrastructure Engineer. AWS, Terraform, CI/CD, containers and observability.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230B0F0D'/%3E%3Ctext x='50' y='68' font-size='58' fill='%236FEFA0' text-anchor='middle' font-family='monospace'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="topbar">
+  <div class="topbar__inner">
+    <a href="#home" class="brand">ravan<span class="brand__at">@</span>cloud<span class="brand__cursor">:~$</span></a>
+    <nav class="nav" id="nav">
+      <a href="#about">about</a>
+      <a href="#skills">stack</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#ask">ask</a>
+      <a href="#contact" class="nav__cta">contact</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="home">
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow"><span class="dot dot--live" aria-hidden="true"></span>available for new opportunities</p>
+        <h1>Ravan builds &amp; runs<br>cloud infrastructure<br>that stays up.</h1>
+        <p class="hero__sub">Cloud &amp; Infrastructure Engineer based in Kolkata — provisioning, shipping and
+          monitoring systems on AWS with Terraform, containers and CI/CD pipelines.</p>
+        <div class="hero__actions">
+          <a href="#projects" class="btn btn--primary">View projects</a>
+          <a href="#ask" class="btn btn--ghost">Ask about my work</a>
+        </div>
+      </div>
+
+      <div class="hero__terminal panel" aria-label="Quick summary terminal">
+        <div class="term__chrome">
+          <span class="term__dot term__dot--r"></span>
+          <span class="term__dot term__dot--y"></span>
+          <span class="term__dot term__dot--g"></span>
+          <span class="term__title">ravan@infra ~ %</span>
+        </div>
+        <pre class="term__body" id="bootTerm" aria-live="polite"></pre>
+      </div>
+    </div>
+
+    <div class="stat-strip" role="list">
+      <div class="stat" role="listitem"><span class="stat__num">~2 yrs</span><span class="stat__label">production experience</span></div>
+      <div class="stat" role="listitem"><span class="stat__num">AWS</span><span class="stat__label">primary cloud</span></div>
+      <div class="stat" role="listitem"><span class="stat__num">4</span><span class="stat__label">shipped / active projects</span></div>
+      <div class="stat" role="listitem"><span class="stat__num">Kolkata</span><span class="stat__label">based, remote friendly</span></div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="section" id="about">
+    <h2 class="section__title"><span class="section__tag">$ cat about.md</span>About</h2>
+    <div class="panel about__panel">
+      <p>I'm Ravan (Ramkrishna Roy Barman), a Cloud &amp; Infrastructure Engineer working out of Kolkata. Most
+        recently I've been the Cloud &amp; Infrastructure Engineer at <strong>Stylopay</strong>, a FinTech
+        company, where infrastructure has to be reliable in the boring, unglamorous way finance demands.</p>
+      <p>Before that, at <strong>Digi Samurai LLP</strong>, I came in from an ML / Data Science background and
+        taught Python, Django and machine learning to college students — which is where a lot of my instinct
+        for explaining systems clearly, not just building them, comes from.</p>
+      <p>I hold a B.Tech in Mechanical Engineering and a Post Graduate Certificate Program in Data Science —
+        an unusual route into cloud engineering, but one that left me comfortable moving between systems
+        thinking, data, and infrastructure. Physics has stayed a thread through it too — I studied quantum
+        physics during my bachelor's and still dig into quantum computing as a side interest (more on that
+        in Projects).</p>
+      <p class="muted-note">— Employment dates and a downloadable résumé aren't wired into this page yet;
+        ask Ravan to add them when he fills in the final details.</p>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section class="section" id="skills">
+    <h2 class="section__title"><span class="section__tag">$ ls stack/</span>Stack</h2>
+    <div class="skills-grid">
+      <div class="panel skill-card">
+        <h3>Cloud &amp; Provisioning</h3>
+        <div class="tags"><span>AWS</span><span>Terraform</span><span>ECS</span><span>EKS</span></div>
+      </div>
+      <div class="panel skill-card">
+        <h3>CI / CD</h3>
+        <div class="tags"><span>GitHub Actions</span><span>Jenkins</span></div>
+      </div>
+      <div class="panel skill-card">
+        <h3>Containers &amp; Orchestration</h3>
+        <div class="tags"><span>Docker</span><span>ECS/EKS</span><span>Kubernetes</span></div>
+      </div>
+      <div class="panel skill-card">
+        <h3>Observability</h3>
+        <div class="tags"><span>CloudWatch</span><span>ELK Stack</span><span>Prometheus</span><span>Grafana</span></div>
+      </div>
+      <div class="panel skill-card">
+        <h3>Systems &amp; Scripting</h3>
+        <div class="tags"><span>Linux</span><span>Python</span><span>Bash</span></div>
+      </div>
+      <div class="panel skill-card">
+        <h3>Foundation</h3>
+        <div class="tags"><span>ML / Data Science</span><span>Quantum computing (self-study)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section class="section" id="experience">
+    <h2 class="section__title"><span class="section__tag">$ tail experience.log</span>Experience</h2>
+    <div class="timeline">
+      <div class="panel timeline__item">
+        <div class="timeline__head">
+          <h3>Cloud &amp; Infrastructure Engineer</h3>
+          <span class="badge badge--live">current</span>
+        </div>
+        <p class="timeline__org">Stylopay · FinTech</p>
+        <p>Working on cloud infrastructure for a financial platform, where uptime and change discipline
+          carry real weight — provisioning with Terraform, deploying through CI/CD, and keeping an eye on
+          system health via CloudWatch and the ELK stack.</p>
+      </div>
+      <div class="panel timeline__item">
+        <div class="timeline__head">
+          <h3>ML / Data Science → Instructor</h3>
+          <span class="badge badge--muted">prior</span>
+        </div>
+        <p class="timeline__org">Digi Samurai LLP</p>
+        <p>Came in with an ML / Data Science background and taught Python, Django and machine learning to
+          college students — a role that sharpened both the fundamentals and the ability to explain them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="section" id="projects">
+    <h2 class="section__title"><span class="section__tag">$ git log --projects</span>Projects</h2>
+    <div class="projects-grid" id="projectsGrid"><!-- populated by script.js from shared data --></div>
+  </section>
+
+  <!-- ================= ASK / TERMINAL CHAT ================= -->
+  <section class="section" id="ask">
+    <h2 class="section__title"><span class="section__tag">$ ./ask-ravan</span>Ask about my work</h2>
+    <p class="section__lede">A small, static Q&amp;A console — it only knows what's on this page (stack,
+      experience, projects, contact). For anything else, use the form below and it'll reach Ravan directly.</p>
+
+    <div class="panel term-console">
+      <div class="term__chrome">
+        <span class="term__dot term__dot--r"></span>
+        <span class="term__dot term__dot--y"></span>
+        <span class="term__dot term__dot--g"></span>
+        <span class="term__title">ravan-bot ~ %</span>
+      </div>
+      <div class="term-console__output" id="chatOutput" aria-live="polite">
+        <p class="term-line term-line--bot">Hi — I can answer questions about Ravan's stack, experience,
+          projects and how to get in touch. Try one of the prompts below, or type your own.</p>
+      </div>
+      <div class="term-console__suggestions" id="chatSuggestions"></div>
+      <form class="term-console__form" id="chatForm">
+        <span class="term-console__prompt" aria-hidden="true">&gt;</span>
+        <input type="text" id="chatInput" placeholder="Ask a question…" aria-label="Ask a question about Ravan's work" autocomplete="off">
+        <button type="submit" class="btn btn--mono">run</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section" id="contact">
+    <h2 class="section__title"><span class="section__tag">$ mail --new</span>Get in touch</h2>
+    <div class="contact-grid">
+      <div class="panel contact__form-panel">
+        <form id="inquiryForm" novalidate>
+          <!-- honeypot -->
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label for="fName">Name</label>
+          <input type="text" id="fName" name="name" required autocomplete="name">
+
+          <label for="fEmail">Email</label>
+          <input type="email" id="fEmail" name="email" required autocomplete="email">
+
+          <label for="fMsg">Message</label>
+          <textarea id="fMsg" name="message" rows="5" required placeholder="What are you looking to build, hire for, or ask?"></textarea>
+
+          <button type="submit" class="btn btn--primary" id="submitBtn">Send inquiry</button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+
+      <div class="panel contact__info-panel">
+        <h3>Direct</h3>
+        <ul class="contact-list">
+          <li><span>email</span><a id="emailLink" href="mailto:your.email@example.com">your.email@example.com</a></li>
+          <li><span>github</span><a id="githubLink" href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername</a></li>
+          <li><span>linkedin</span><a id="linkedinLink" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">linkedin.com/in/yourusername</a></li>
+          <li><span>location</span><span>Kolkata, India</span></li>
+        </ul>
+        <p class="muted-note">Placeholders above — swap in real links before you deploy. See README.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>Built by Ravan · deployed on GitHub Pages · <span id="year"></span></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
