@@ -10,7 +10,8 @@ const PORTFOLIO = {
   current: {
     title: "Cloud & Infrastructure Engineer",
     org: "Stylopay (FinTech)",
-    detail: "Works on cloud infrastructure for a financial platform — provisioning with Terraform, shipping through CI/CD, and monitoring system health via CloudWatch and the ELK stack."
+    detail: "Works on cloud infrastructure for a financial platform — provisioning with Terraform, shipping through CI/CD, and monitoring system health via CloudWatch and the ELK stack. Docker Swarm runs production (a platform call from management); Kubernetes was set up independently for dev/QA.",
+    highlight: "Led a zero-downtime, multi-region Blue-Green migration."
   },
   prior: {
     title: "ML / Data Science background, then Instructor",
@@ -22,13 +23,33 @@ const PORTFOLIO = {
     "Post Graduate Certificate Program in Data Science"
   ],
   stack: {
-    "Cloud & Provisioning": ["AWS", "Terraform", "ECS", "EKS"],
+    "Cloud & Provisioning": ["AWS", "Terraform", "ECS", "EKS", "GCP (project)"],
     "CI / CD": ["GitHub Actions", "Jenkins"],
-    "Containers & Orchestration": ["Docker", "ECS/EKS", "Kubernetes"],
+    "Containers & Orchestration": ["Docker", "Docker Swarm (production)", "Kubernetes (dev/QA)"],
     "Observability": ["CloudWatch", "ELK Stack", "Prometheus", "Grafana"],
     "Systems & Scripting": ["Linux", "Python", "Bash"]
   },
+  links: {
+    github: "https://github.com/ramkrishna-12",
+    linkedin: "https://www.linkedin.com/in/ramkrishna-roy-barman-48391b16a",
+    email: "rupambarmanxyz@gmail.com",
+    mlRepo: "https://github.com/ramkrishna-12/machine-learning-projects"
+  },
   projects: [
+    {
+      name: "Zero-Downtime Multi-Region Blue-Green Migration",
+      status: "live",
+      statusLabel: "Production — Stylopay",
+      summary: "A multi-region cutover for a FinTech platform with no downtime. The new (green) stack was validated against QA environment APIs first, then switched to prod APIs, with traffic split roughly 60/40 blue/green for the first week while the previous infrastructure stayed up as a fallback (a company decision). Approximate scale: ~12 EC2 instances each running 3–4 microservices, 10–12 Lambdas fronted by an API Gateway per microservice API, 2 EC2 Swarm managers and 4 EC2 for frontend and other workloads — with ACM, Route 53 and ALB handling certificates, DNS and routing. Database migration/replication sat outside his scope.",
+      tags: ["AWS", "Route 53", "ALB", "ACM", "EC2", "Lambda", "API Gateway", "Docker Swarm"]
+    },
+    {
+      name: "Cloud Data Pipeline & CI/CD Gate",
+      status: "case-study",
+      statusLabel: "Case study — completed (Sept 2026)",
+      summary: "A recruitment case study covering a GCP data pipeline and a deployment safety gate: Terraform-provisioned staging (a GCS raw landing zone feeding BigQuery, with IAM conditions and row-level security), a fail-closed CI/CD build gate in GitHub Actions so a bad build simply can't ship, and a Django REST Framework schema-validation layer — with tests — for a student-onboarding payload.",
+      tags: ["GCP", "Terraform", "BigQuery", "IAM / Row-Level Security", "GitHub Actions", "Fail-closed CI/CD", "Django REST Framework"]
+    },
     {
       name: "Predictive Ops for a Sample Microservice",
       status: "case-study",
@@ -42,6 +63,20 @@ const PORTFOLIO = {
       statusLabel: "Completed",
       summary: "A recruitment assignment: a Text-to-Speech service built on FastAPI and gTTS, deployed to ECS/Fargate with Terraform, wired up to Prometheus and Grafana for monitoring, with Kubernetes integration.",
       tags: ["FastAPI", "gTTS", "ECS/Fargate", "Terraform", "Prometheus", "Grafana", "Kubernetes"]
+    },
+    {
+      name: "Three-Tier Compliance Application",
+      status: "live",
+      statusLabel: "Completed",
+      summary: "A foundational AWS project: a three-tier web app (Flask MVC, MySQL) deployed behind an Application Load Balancer inside a custom VPC on EC2 — the network-segmented, load-balanced setup compliance-minded infrastructure needs.",
+      tags: ["Flask", "MySQL", "EC2", "ALB", "VPC"]
+    },
+    {
+      name: "AWS Billing Prediction System",
+      status: "live",
+      statusLabel: "Completed",
+      summary: "A forecasting tool for AWS spend, combining Linear Regression and ARIMA to predict billing within roughly ±10–20 USD — a small, practical link back to the ML/Data Science side of his background.",
+      tags: ["Python", "Linear Regression", "ARIMA", "AWS cost forecasting"]
     },
     {
       name: "Secure File Upload Pipeline",
@@ -101,6 +136,9 @@ const bootLines = [
   "",
   "$ stack --primary",
   "AWS · Terraform · Docker · ECS/EKS · GitHub Actions · Jenkins · CloudWatch · ELK",
+  "",
+  "$ highlight --latest",
+  PORTFOLIO.current.highlight,
   "",
   "$ status",
   `Open to new opportunities — ${PORTFOLIO.location} (remote friendly)`
@@ -200,6 +238,26 @@ function answerFor(raw) {
 
   if (/digi samurai|teach|taught|previous job|prior role|before stylopay/.test(q)) {
     return `${PORTFOLIO.prior.detail} That was at ${PORTFOLIO.prior.org}, before Stylopay.`;
+  }
+
+  if (/blue.?green|migration|zero.?downtime|traffic split|route ?53|api gateway|lambda|\balb\b/.test(q)) {
+    return "Ravan's signature production story at Stylopay: a zero-downtime, multi-region Blue-Green migration. The new stack was tested against QA environment APIs first, then switched to prod APIs, with traffic split roughly 60/40 blue/green for the first week while the old infrastructure stayed up (a company decision). Roughly: ~12 EC2 instances running 3–4 microservices each, 10–12 Lambdas behind API Gateway, 2 Docker Swarm manager nodes and 4 EC2 for frontend/other workloads, using ACM, Route 53 and ALB. Database migration/replication was outside his scope.";
+  }
+
+  if (/docker swarm|swarm/.test(q)) {
+    return "Stylopay runs Docker Swarm in production — a platform decision from management, not Ravan's own choice — and he operates within it day to day.";
+  }
+
+  if (/kubernetes|k8s/.test(q)) {
+    return "Ravan set up Kubernetes independently for dev/QA environments at Stylopay, separate from the production Docker Swarm setup.";
+  }
+
+  if (/gcp|bigquery|google cloud/.test(q)) {
+    return "AWS is Ravan's primary cloud, but he's also built on GCP — most recently a Terraform-provisioned pipeline into BigQuery with IAM conditions and row-level security, as part of a recruitment case study.";
+  }
+
+  if (/repo|source code|machine learning project|ml project|chatbot project/.test(q)) {
+    return `More of Ravan's work — especially ML and chatbot projects — is up on GitHub: ${PORTFOLIO.links.mlRepo}`;
   }
 
   if (/project|built|work(?!ing at)|portfolio piece/.test(q)) {
