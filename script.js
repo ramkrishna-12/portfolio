@@ -23,7 +23,7 @@ const PORTFOLIO = {
     "Post Graduate Certificate Program in Data Science"
   ],
   stack: {
-    "Cloud & Provisioning": ["AWS", "Terraform", "ECS", "EKS", "GCP (project)"],
+    "Cloud & Provisioning": ["AWS", "Terraform", "ECS", "EKS", "GCP (project)", "AWS Bedrock (project)"],
     "CI / CD": ["GitHub Actions", "Jenkins"],
     "Containers & Orchestration": ["Docker", "Docker Swarm (production)", "Kubernetes (dev/QA)"],
     "Observability": ["CloudWatch", "ELK Stack", "Prometheus", "Grafana"],
@@ -44,11 +44,28 @@ const PORTFOLIO = {
       tags: ["AWS", "Route 53", "ALB", "ACM", "EC2", "Lambda", "API Gateway", "Docker Swarm"]
     },
     {
-      name: "Cloud Data Pipeline & CI/CD Gate",
-      status: "case-study",
-      statusLabel: "Case study — completed (Sept 2026)",
-      summary: "A recruitment case study covering a GCP data pipeline and a deployment safety gate: Terraform-provisioned staging (a GCS raw landing zone feeding BigQuery, with IAM conditions and row-level security), a fail-closed CI/CD build gate in GitHub Actions so a bad build simply can't ship, and a Django REST Framework schema-validation layer — with tests — for a student-onboarding payload.",
-      tags: ["GCP", "Terraform", "BigQuery", "IAM / Row-Level Security", "GitHub Actions", "Fail-closed CI/CD", "Django REST Framework"]
+      name: "AWS Bedrock — AI Models on AWS",
+      status: "progress",
+      statusLabel: "Ongoing — 4 months",
+      summary: "An ongoing project, about four months in, on how AI models actually run in AWS: models from Anthropic are pulled from AWS Bedrock and put to work on tasks.",
+      tags: ["AWS Bedrock", "Anthropic", "AWS", "Generative AI"],
+      url: "https://github.com/ramkrishna-12/aws-bedrock"
+    },
+    {
+      name: "MLflow Model Pipeline on AWS ECS",
+      status: "live",
+      statusLabel: "Completed",
+      summary: "An end-to-end MLOps pipeline for a fraud-detector model. Data (S3/parquet) is validated, a training sweep runs as MLflow nested runs, a quality gate decides whether a model gets registered, and a challenger is compared against the current champion; promotion is just moving the @champion alias. GitHub Actions CI runs lint, tests, a pipeline smoke test, Docker build and Terraform fmt/validate; CD trains, builds the image, waits for approval, then does an ECS rolling deploy followed by a smoke test. Serving runs on ECS Fargate behind an ALB, loading models:/fraud-detector@champion from an MLflow service backed by RDS Postgres and S3 artifacts.",
+      tags: ["MLflow", "Python", "S3 / Parquet", "ECS Fargate", "ALB", "RDS Postgres", "Terraform", "GitHub Actions", "Docker"],
+      url: "https://github.com/ramkrishna-12/Ml_Flow-Pipeline"
+    },
+    {
+      name: "Habot Connect — Cloud Data Pipeline & CI/CD Gate",
+      status: "live",
+      statusLabel: "Hiring task — completed (Sept 2026)",
+      summary: "A hands-on task set by Habot Connect for their Junior Cloud & DevOps Engineer hiring process, in three parts: Terraform-provisioned secure staging (a GCS raw landing bucket and a BigQuery staged/enforced dataset, with IAM conditions and row-level security); a fail-closed GitHub Actions gate covering formatting, linting, Terraform validation, infrastructure security scanning and hardcoded-secret detection; and a Django REST Framework serializer plus a deterministic Yes/No validation library for a student-onboarding payload, with tests. The brief gave no exact schema, so the assumptions are documented rather than silently invented.",
+      tags: ["GCP", "Terraform", "BigQuery", "IAM / Row-Level Security", "GitHub Actions", "Fail-closed CI/CD", "Django REST Framework"],
+      url: "https://github.com/ramkrishna-12/connect-gcp-aws-terraform"
     },
     {
       name: "Predictive Ops for a Sample Microservice",
@@ -65,6 +82,14 @@ const PORTFOLIO = {
       tags: ["FastAPI", "gTTS", "ECS/Fargate", "Terraform", "Prometheus", "Grafana", "Kubernetes"]
     },
     {
+      name: "Secure File Upload Pipeline",
+      status: "live",
+      statusLabel: "Completed",
+      summary: "A staged defence for untrusted uploads, designed against a written threat model: filename validation (path traversal, double extensions), magic-byte content validation (extension and MIME spoofing), an antivirus/malware scan, and static analysis for scripts and macros (PDF JavaScript/OpenAction, VBA, SVG/HTML XSS). Downloads go through an API Gateway abstraction so infrastructure identity never reaches the client, with least-privilege IAM, audit logging, and checksum-based integrity verification.",
+      tags: ["Security", "Threat modelling", "Magic-byte validation", "AV scan", "Static analysis", "API Gateway", "IAM least privilege"],
+      url: "https://github.com/ramkrishna-12/file-upload-validation"
+    },
+    {
       name: "Three-Tier Compliance Application",
       status: "live",
       statusLabel: "Completed",
@@ -79,18 +104,12 @@ const PORTFOLIO = {
       tags: ["Python", "Linear Regression", "ARIMA", "AWS cost forecasting"]
     },
     {
-      name: "Secure File Upload Pipeline",
-      status: "progress",
-      statusLabel: "In progress",
-      summary: "A portfolio project focused on handling untrusted uploads safely: multi-stage validation, a quarantine flow for anything suspicious, and magic-byte verification so files can't lie about their type. ClamAV integration is the next step.",
-      tags: ["Security", "File validation", "Quarantine flow", "ClamAV (next)"]
-    },
-    {
-      name: "Angular Railway Reservation Website",
-      status: "progress",
-      statusLabel: "In progress",
-      summary: "An Angular-based railway reservation website, currently in active development.",
-      tags: ["Angular", "Frontend", "Reservation system"]
+      name: "Shipment Error ETL Pipeline",
+      status: "live",
+      statusLabel: "Completed",
+      summary: "A production-style ETL simulation for e-commerce shipment and order analytics on deliberately messy CSVs: data cleaning and standardization, duplicate handling, multi-table merging, revenue calculation and shipment aggregation, run automatically through GitHub Actions and packaged with Docker.",
+      tags: ["Python", "Pandas", "GitHub Actions", "Docker", "docker-compose", "ETL"],
+      url: "https://github.com/ramkrishna-12/shipment_error"
     }
   ],
   exploring: {
@@ -98,7 +117,7 @@ const PORTFOLIO = {
     detail: "A long-standing personal interest in quantum mechanics and quantum cloud computing — currently in a learning-and-planning phase rather than a shipped project. Rooted in studying quantum physics during his bachelor's degree."
   },
   contact: {
-    note: "Best reached through the contact form on this page — replace the placeholder email/GitHub/LinkedIn links before deploying."
+    note: "Best reached through the contact form on this page, or directly by email, GitHub or LinkedIn (links in the contact section)."
   }
 };
 
@@ -185,6 +204,7 @@ function renderProjects() {
       </div>
       <p>${p.summary}</p>
       <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
+      ${p.url ? `<a class="project-card__link" href="${p.url}" target="_blank" rel="noopener">View on GitHub →</a>` : ""}
     </article>
   `).join("") + `
     <article class="panel project-card">
@@ -253,11 +273,27 @@ function answerFor(raw) {
   }
 
   if (/gcp|bigquery|google cloud/.test(q)) {
-    return "AWS is Ravan's primary cloud, but he's also built on GCP — most recently a Terraform-provisioned pipeline into BigQuery with IAM conditions and row-level security, as part of a recruitment case study.";
+    return "AWS is Ravan's primary cloud, but he's also built on GCP — most recently a Terraform-provisioned pipeline into BigQuery with IAM conditions and row-level security, as a hiring task for Habot Connect.";
   }
 
   if (/repo|source code|machine learning project|ml project|chatbot project/.test(q)) {
     return `More of Ravan's work — especially ML and chatbot projects — is up on GitHub: ${PORTFOLIO.links.mlRepo}`;
+  }
+
+  if (/bedrock|genai|generative|llm|anthropic|ai model/.test(q)) {
+    return "Ravan's ongoing AWS Bedrock project (about four months so far) looks at how AI models run in AWS: models from Anthropic are pulled from AWS Bedrock and put to work on tasks. Repo: " + PORTFOLIO.links.github + "/aws-bedrock";
+  }
+
+  if (/mlflow|mlops|champion|challenger|fraud|model pipeline/.test(q)) {
+    return "Ravan built an end-to-end MLflow pipeline for a fraud-detector model: validate data, run a training sweep, pass a quality gate, register, then compare challenger vs champion (promotion moves the @champion alias). CI/CD runs on GitHub Actions with an approval step and an ECS rolling deploy; serving is ECS Fargate behind an ALB with MLflow on RDS Postgres and S3. Repo: " + PORTFOLIO.links.github + "/Ml_Flow-Pipeline";
+  }
+
+  if (/upload|malware|virus|antivirus|threat model|magic.?byte|file security/.test(q)) {
+    return "Ravan's Secure File Upload Pipeline is a staged defence: filename validation, magic-byte content validation, an AV/malware scan, and static analysis for scripts and macros — plus an API Gateway abstraction for downloads, least-privilege IAM, audit logging and checksum verification. Repo: " + PORTFOLIO.links.github + "/file-upload-validation";
+  }
+
+  if (/etl|pandas|shipment|csv/.test(q)) {
+    return "Ravan's Shipment Error ETL Pipeline cleans and merges messy e-commerce order, product and shipment CSVs with Python and Pandas, computes revenue and shipment aggregates, and runs automatically through GitHub Actions and Docker. Repo: " + PORTFOLIO.links.github + "/shipment_error";
   }
 
   if (/project|built|work(?!ing at)|portfolio piece/.test(q)) {
@@ -322,16 +358,21 @@ if (chatForm) {
 }
 
 // ===================================================================
-// CONTACT FORM — submits to Formspree so GitHub Pages (static hosting)
-// can still collect inquiries. Replace FORMSPREE_ENDPOINT below with
-// your own form URL from https://formspree.io — see README.md.
-// Inquiries can then be exported as a CSV from your Formspree dashboard.
+// CONTACT FORM — posts to a Google Apps Script web app, which appends
+// each inquiry as a row in your Google Sheet. GitHub Pages is static, so
+// the Apps Script acts as the "backend". Setup: README.md + apps-script/Code.gs
+// Paste your deployed web app URL (ends in /exec) below.
 // ===================================================================
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // <-- replace YOUR_FORM_ID
+const SHEETS_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 
 const inquiryForm = document.getElementById("inquiryForm");
 const formStatus = document.getElementById("formStatus");
 const submitBtn = document.getElementById("submitBtn");
+
+function setStatus(msg, kind) {
+  formStatus.textContent = msg;
+  formStatus.className = "form-status" + (kind ? ` is-${kind}` : "");
+}
 
 if (inquiryForm) {
   inquiryForm.addEventListener("submit", async (e) => {
@@ -340,35 +381,42 @@ if (inquiryForm) {
     // honeypot: if filled, silently drop (bot submission)
     if (inquiryForm._gotcha.value) return;
 
-    if (FORMSPREE_ENDPOINT.includes("YOUR_FORM_ID")) {
-      formStatus.textContent = "Form isn't connected yet — add a Formspree form ID in script.js (see README.md).";
-      formStatus.className = "form-status is-err";
+    const name = inquiryForm.name.value.trim();
+    const email = inquiryForm.email.value.trim();
+    const message = inquiryForm.message.value.trim();
+
+    if (!name || !email || !message) {
+      setStatus("Please fill in your name, email and message.", "err");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus("That email address doesn't look right.", "err");
+      return;
+    }
+
+    if (SHEETS_ENDPOINT.startsWith("PASTE_")) {
+      setStatus("Form isn't connected yet — add your Apps Script URL in script.js (see README.md).", "err");
       return;
     }
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending…";
-    formStatus.textContent = "";
-    formStatus.className = "form-status";
+    setStatus("", "");
 
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      // Apps Script web apps don't return CORS headers, so we send in
+      // no-cors mode: the request goes through, but the response is opaque.
+      // A thrown error therefore means a network failure; success means "sent".
+      await fetch(SHEETS_ENDPOINT, {
         method: "POST",
-        headers: { "Accept": "application/json" },
-        body: new FormData(inquiryForm)
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ name, email, message })
       });
-
-      if (res.ok) {
-        formStatus.textContent = "Thanks — your message is in. Ravan will get back to you soon.";
-        formStatus.className = "form-status is-ok";
-        inquiryForm.reset();
-      } else {
-        formStatus.textContent = "Something went wrong sending that — try again, or use the email link.";
-        formStatus.className = "form-status is-err";
-      }
+      setStatus("Thanks — your message is in. Ravan will get back to you soon.", "ok");
+      inquiryForm.reset();
     } catch (err) {
-      formStatus.textContent = "Network error — try again, or use the email link on the right.";
-      formStatus.className = "form-status is-err";
+      setStatus("Network error — try again, or use the email link on the right.", "err");
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = "Send inquiry";
