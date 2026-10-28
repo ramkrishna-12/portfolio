@@ -196,6 +196,11 @@ ul{ list-style:none; margin:0; padding:0; }
 .timeline__org{ font-family:var(--font-mono); font-size:.8rem; color:var(--ink-muted); margin:.3em 0 .8em; }
 .timeline__highlight{ font-weight:600; color:var(--accent); margin:.6em 0 0; font-size:.92rem; }
 .projects__more{ margin-top:1.4rem; }
+.project-card__link{
+  margin-top:auto; align-self:flex-start; font-family:var(--font-mono); font-size:.78rem;
+  color:var(--accent); text-decoration:none;
+}
+.project-card__link:hover{ text-decoration:underline; }
 .badge{
   font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em;
   padding:.25em .6em; border-radius:4px; font-weight:600;
