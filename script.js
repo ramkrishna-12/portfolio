@@ -363,7 +363,7 @@ if (chatForm) {
 // the Apps Script acts as the "backend". Setup: README.md + apps-script/Code.gs
 // Paste your deployed web app URL (ends in /exec) below.
 // ===================================================================
-const SHEETS_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+const SHEETS_ENDPOINT = "https://formspree.io/f/xkjjbawa";
 
 const inquiryForm = document.getElementById("inquiryForm");
 const formStatus = document.getElementById("formStatus");
